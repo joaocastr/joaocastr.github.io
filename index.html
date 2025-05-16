@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>João Victor - Web Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            display: block;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #0a0e17;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-weight: 700;
+            color: #00ff41;
+        }
+
+        nav a {
+            margin-left: 2rem;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            position: relative;
+        }
+
+        nav a.active::after,
+        nav a:hover::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: #00ff41;
+            bottom: -4px;
+            left: 0;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            color: #ccc;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            margin-top: 1rem;
+            font-size: 1.25rem;
+            color: #00ff41;
+        }
+
+        .buttons {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .buttons a {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .py-20 {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+
+        .primary-btn {
+            background-color: #00ff41;
+            color: #0a0e17;
+        }
+
+        .primary-btn:hover {
+            background-color: #00cc33;
+        }
+
+        /* Color gradiant style for progress bars */
+        .progress-bar {
+            background: linear-gradient(90deg, #00ff41, #00ffaa);
+            height: 6px;
+            border-radius: 3px;
+            transition: width 1.5s ease;
+            width: 0%;
+        }
+
+        .secondary-btn {
+            border: 2px solid #00ff41;
+            color: #00ff41;
+        }
+
+        .secondary-btn:hover {
+            background-color: #00ff41;
+            color: #0a0e17;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 2rem;
+            font-size: 1.5rem;
+            color: #00ff41;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .about {
+            padding: 100px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .about .avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: #111827;
+            border: 4px dashed #00ff41;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #00ff41;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
+        }
+
+        .about .text {
+            max-width: 600px;
+        }
+
+        .about h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .about h3 {
+            color: #00ff41;
+            font-family: monospace;
+            margin-bottom: 1rem;
+        }
+
+        .about p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .about .icons {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .about .icons a {
+            background: #1f2937;
+            color: white;
+            padding: 0.75rem;
+            border-radius: 9999px;
+            transition: transform 0.3s;
+        }
+
+        .about .icons a:hover {
+            transform: scale(1.1);
+            background: #00ff41;
+            color: #0a0e17;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #00ff41;
+            color: #0a0e17;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 999;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        nav a {
+            margin-left: 2rem;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background: #00ff41;
+            bottom: -4px;
+            left: 0;
+            transition: width 0.4s ease;
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- START ---- CANVAS FOR MATRIX EFFECT -->
+    <canvas></canvas>
+    <!-- END -->
+
+    <!-- START ---- BACK TO TOP BUTTON -->
+    <button id="backToTop" class="back-to-top">↑</button>
+    <!-- END -->
+
+    <header>
+        <div class="logo">&lt;/&gt; JOÃO<span style="color:white">.VICTOR</span></div>
+        <nav>
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#education">Education</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- START ---- GREETINGS SECTION -->
+    <section class="hero" id="home">
+        <h2>Hello, I'm</h2>
+        <h1>João Victor</h1>
+        <p>Web Developer &amp; Full Stack E-commerce</p>
+        <div class="buttons">
+            <a href="#experience" class="primary-btn">View My Experience</a>
+            <a href="#contact" class="secondary-btn">Contact Me</a>
+        </div>
+        <div class="scroll-down">↓</div>
+    </section>
+    <!-- END ---- GREETINGS SECTION -->
+
+    <!-- START ---- ABOUT ME SECTION -->
+    <section class="about" id="about" style="background-color: rgba(10, 14, 23, 0.95);">
+        <div class="avatar">JV</div>
+        <div class="text">
+            <h2 style="text-align: center; color: white; font-size: 2rem; font-weight: bold; margin-bottom: 3rem;">
+                About &amp; Me
+                <div style="width: 120px; height: 3px; background-color: #00ff41; margin: 0.5rem auto 0;"></div>
+            </h2>
+            <h3>Who am I?</h3>
+            <p>I'm a passionate professional in creating impactful and functional digital experiences. With beginner level Python and a strong skill set in web development, including advanced knowledge in HTML, CSS, JavaScript, PHP, and SQL.</p>
+            <p>Having experience in previous positions as a web programmer, I am currently eligible to work in Portugal and Brazil, with proficiency in English at a B2 level and C2 Portuguese.</p>
+            <p>I am excited to contribute my experience in an international environment. In addition to my technical skills, I have mastery over the Microsoft Office Suite, providing a comprehensive and effective approach to projects.</p>
+            <div class="icons">
+                <a href="https://www.linkedin.com/in/joao-victorcastro" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:joaovictorc2506@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="tel:+351936052219"><i class="fas fa-phone"></i></a>
+            </div>
+        </div>
+    </section>
+    <!-- END ---- ABOUT ME SECTION -->
+
+    <!-- START ---- SKILLS & EXPERTISE SECTION -->
+    <section class="skills" id="skills" style="background-color: rgba(10, 14, 23, 0.85); padding: 80px 20px;">
+        <h2 style="text-align: center; color: white; font-size: 2rem; font-weight: bold; margin-bottom: 3rem;">
+            Skills &amp; Expertise
+            <div style="width: 120px; height: 3px; background-color: #00ff41; margin: 0.5rem auto 0;"></div>
+        </h2>
+        <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; gap: 3rem;">
+            <!-- START ---- LEFT COLUMN -->
+            <div style="flex: 1; min-width: 280px;">
+                <h3 style="color: #00ff41; font-family: monospace; font-size: 1.5rem; margin-bottom: 1.5rem;">Technical Skills</h3>
+
+                <div style="margin-bottom: 1rem;">HTML & CSS <span style="float:right">95%</span>
+                    <div style="background:#333;height:6px;border-radius:3px;margin-top:5px;overflow:hidden;">
+                        <div class="progress-bar" data-percent="95"></div>
+                    </div>
+                </div>
+                <div style="margin-bottom: 1rem;">JavaScript <span style="float:right">90%</span>
+                    <div style="background:#333;height:6px;border-radius:3px;margin-top:5px;overflow:hidden;">
+                        <div class="progress-bar" data-percent="90"></div>
+                    </div>
+                </div>
+                <div style="margin-bottom: 1rem;">PHP <span style="float:right">85%</span>
+                    <div style="background:#333;height:6px;border-radius:3px;margin-top:5px;overflow:hidden;">
+                        <div class="progress-bar" data-percent="85"></div>
+                    </div>
+                </div>
+                <div style="margin-bottom: 1rem;">SQL <span style="float:right">88%</span>
+                    <div style="background:#333;height:6px;border-radius:3px;margin-top:5px;overflow:hidden;">
+                        <div class="progress-bar" data-percent="88"></div>
+                    </div>
+                </div>
+                <div style="margin-bottom: 1rem;">Python <span style="float:right">60%</span>
+                    <div style="background:#333;height:6px;border-radius:3px;margin-top:5px;overflow:hidden;">
+                        <div class="progress-bar" data-percent="60"></div>
+                    </div>
+                </div>
+                <div style="margin-bottom: 1rem;">Power BI <span style="float:right">75%</span>
+                    <div style="background:#333;height:6px;border-radius:3px;margin-top:5px;overflow:hidden;">
+                        <div class="progress-bar" data-percent="75"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- END ---- LEFT COLUMN -->
+
+            <!-- START ---- RIGHT COLUMN -->
+            <div style="flex: 1; min-width: 280px;">
+                <h3 style="color: #00ff41; font-family: monospace; font-size: 1.5rem; margin-bottom: 1.5rem;">Tools & Technologies</h3>
+                <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2rem;">
+                    <span style="background:#1f2937;padding:6px 12px;border-radius:20px;color:white;">SQL Server</span>
+                    <span style="background:#1f2937;padding:6px 12px;border-radius:20px;color:white;">MySQL</span>
+                    <span style="background:#1f2937;padding:6px 12px;border-radius:20px;color:white;">JavaScript Extensions</span>
+                    <span style="background:#1f2937;padding:6px 12px;border-radius:20px;color:white;">Power BI</span>
+                    <span style="background:#1f2937;padding:6px 12px;border-radius:20px;color:white;">Microsoft Office Suite</span>
+                    <span style="background:#1f2937;padding:6px 12px;border-radius:20px;color:white;">Web Development</span>
+                    <span style="background:#1f2937;padding:6px 12px;border-radius:20px;color:white;">E-commerce</span>
+                    <span style="background:#1f2937;padding:6px 12px;border-radius:20px;color:white;">Full Stack</span>
+                </div>
+
+                <h3 style="color: #00ff41; font-family: monospace; font-size: 1.5rem; margin-bottom: 1rem;">Languages</h3>
+                <div style="margin-bottom: 1rem;">Portuguese <span style="float:right">C2 (Fluent)</span>
+                    <div style="background:#333;height:6px;border-radius:3px;margin-top:5px;overflow:hidden;">
+                        <div class="progress-bar" data-percent="100"></div>
+                    </div>
+                </div>
+                <div style="margin-bottom: 2rem;">English <span style="float:right">B2</span>
+                    <div style="background:#333;height:6px;border-radius:3px;margin-top:5px;overflow:hidden;">
+                        <div class="progress-bar" data-percent="75"></div>
+                    </div>
+                </div>
+
+                <h3 style="color: #00ff41; font-family: monospace; font-size: 1.5rem; margin-bottom: 1rem;">Soft Skills</h3>
+                <ul style="list-style:none; padding-left:0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; color: white;">
+                    <li><i class="fas fa-users" style="color:#00ff41;margin-right:8px;"></i>Team Collaboration</li>
+                    <li><i class="fas fa-tasks" style="color:#00ff41;margin-right:8px;"></i>Problem Solving</li>
+                    <li><i class="fas fa-comments" style="color:#00ff41;margin-right:8px;"></i>Communication</li>
+                    <li><i class="fas fa-lightbulb" style="color:#00ff41;margin-right:8px;"></i>Agile Methodologies</li>
+                </ul>
+            </div>
+            <!-- END ---- RIGHT COLUMN -->
+        </div>
+    </section>
+    <!-- END ---- SKILLS & EXPERTISE SECTION -->
+
+    <!-- EXPERIENCE SECTION -->
+    <section id="experience" style="background-color: rgba(10, 14, 23, 0.95); padding: 80px 20px;">
+        <h2 style="text-align: center; color: white; font-size: 2rem; font-weight: bold; margin-bottom: 3rem;">
+            Work Experience
+            <div style="width: 160px; height: 3px; background-color: #00ff41; margin: 0.5rem auto 0;"></div>
+        </h2>
+        <div style="max-width: 900px; margin: auto; display: flex; flex-direction: column; gap: 3rem;">
+            <!-- Experience Block -->
+            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                <div style="display: flex; flex-direction: column; align-items: center; position: relative;">
+                    <div style="width: 2px; height: 2200%; background: #00ff41; position: absolute; top: 10px;"></div>
+                    <div style="width: 10px; height: 10px; background-color: #00ff41; border-radius: 50%; z-index: 1;"></div>
+                </div>
+                <div style="background-color: #1f2937; padding: 1.5rem; border-radius: 10px; flex: 1;">
+                    <p style="color: #00ff41; font-family: monospace; margin-bottom: 0.5rem;">10/2024 - Present</p>
+                    <h3 style="color: #00ff41; font-weight: bold; margin-bottom: 0.25rem;">Full Stack E-commerce Developer</h3>
+                    <h4 style="color: white; margin-bottom: 1rem;">Presenca de luxo - PT</h4>
+                    <ul style="padding-left: 1.2rem; color: #cbd5e1; list-style-type: disc;">
+                        <li>Responsible for the development of systems for the financial, HR, and administrative sectors.</li>
+                        <li>Investigation and problem-solving in a team, using agile methodologies.</li>
+                        <li>Conducting tests and continuous improvements to ensure the usability and performance of the systems.</li>
+                        <li>Assisting in the construction of web pages.</li>
+                        <li>Use of JavaScript extensions and interaction with databases.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Experience Block -->
+            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                <div style="display: flex; flex-direction: column; align-items: center; position: relative;">
+                    <div style="width: 2px; height: 2400%; background: #00ff41; position: absolute; top: 10px;"></div>
+                    <div style="width: 10px; height: 10px; background-color: #00ff41; border-radius: 50%; z-index: 1;"></div>
+                </div>
+                <div style="background-color: #1f2937; padding: 1.5rem; border-radius: 10px; flex: 1;">
+                    <p style="color: #00ff41; font-family: monospace; margin-bottom: 0.5rem;">02/2021 - 07/2022</p>
+                    <h3 style="color: #00ff41; font-weight: bold; margin-bottom: 0.25rem;">Trainee TI</h3>
+                    <h4 style="color: white; margin-bottom: 1rem;">NTL Nova Tecnologia Ltda - BR</h4>
+                    <ul style="padding-left: 1.2rem; color: #cbd5e1; list-style-type: disc;">
+                        <li>System Development (for financial, HR and administrative sectors)</li>
+                        <li>Problem investigation and solution creation alongside the team in an agile manner.</li>
+                        <li>Testing and continuous improvement of usability and performance.</li>
+                        <li>Report elaboration.</li>
+                        <li>Supporting in page building.</li>
+                        <li>Working with JavaScript extensions and databases.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Experience Block -->
+            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                <div style="display: flex; flex-direction: column; align-items: center; position: relative;">
+                    <div style="width: 2px; height: 2780%; background: #00ff41; position: absolute; top: 10px;"></div>
+                    <div style="width: 10px; height: 10px; background-color: #00ff41; border-radius: 50%; z-index: 10;"></div>
+                </div>
+                <div style="background-color: #1f2937; padding: 1.5rem; border-radius: 10px; flex: 1;">
+                    <p style="color: #00ff41; font-family: monospace; margin-bottom: 0.5rem;">12/2020 - 01/2021</p>
+                    <h3 style="color: #00ff41; font-weight: bold; margin-bottom: 0.25rem;">Programmer</h3>
+                    <h4 style="color: white; margin-bottom: 1rem;">RASV LIMITED – BR</h4>
+                    <ul style="padding-left: 1.2rem; color: #cbd5e1; list-style-type: disc;">
+                        <li>Perform maintenance on existing software.</li>
+                        <li>Participate in meetings with leadership.</li>
+                        <li>Alignment and update of daily activities with squads.</li>
+                        <li>Contribute to project execution.</li>
+                        <li>Develop queries for SQL Server and MySQL databases.</li>
+                        <li>Interpret projects and needs with a systemic vision.</li>
+                        <li>Develop, execute, and implement web system projects using programming languages, within appropriate standards of quality, efficiency, and security.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- EDUCATION SECTION -->
+    <section id="education" style="background-color: rgba(10, 14, 23, 0.85); padding: 80px 20px;">
+        <h2 style="text-align: center; color: white; font-size: 2rem; font-weight: bold; margin-bottom: 2rem;">
+            Education
+            <div style="width: 120px; height: 3px; background-color: #00ff41; margin: 0.5rem auto 0;"></div>
+        </h2>
+        <div style="max-width: 700px; margin: auto; background-color: #1f2937; padding: 1.5rem; border-radius: 10px;">
+            <h3 style="color: #00ff41; font-weight: bold; margin-bottom: 0.25rem;">Bachelor’s degree in Information Systems</h3>
+            <h4 style="color: white; margin-bottom: 0.5rem;">Estácio de Sá University - UNESA</h4>
+            <p style="color: #cbd5e1; margin-bottom: 0.75rem;">Completed in 2023</p>
+            <p style="color: #cbd5e1;"><i class="fas fa-graduation-cap" style="margin-right: 8px; color: #00ff41;"></i>
+                Comprehensive education in information systems, focusing on software development, database management, and IT infrastructure.
+            </p>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" style="background-color: rgba(10, 14, 23, 0.95); padding: 80px 20px;">
+        <h2 style="text-align: center; color: white; font-size: 2rem; font-weight: bold; margin-bottom: 1rem;">
+            Get In Touch
+        </h2>
+        <p style="text-align: center; color: #00ff41; font-family: monospace; font-size: 1rem; margin-bottom: 2rem;">Contact Information</p>
+        <div style="max-width: 800px; margin: auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;">
+            <div style="flex: 1 1 200px; display: flex; align-items: center; gap: 1rem;">
+                <div style="background: #1f2937; padding: 0.75rem; border-radius: 9999px; color: #00ff41;">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div>
+                    <h4 style="margin: 0; color: white; font-weight: bold;">Email</h4>
+                    <p style="margin: 0; color: #cbd5e1;">joaovictorc2506@gmail.com</p>
+                </div>
+            </div>
+            <div style="flex: 1 1 200px; display: flex; align-items: center; gap: 1rem;">
+                <div style="background: #1f2937; padding: 0.75rem; border-radius: 9999px; color: #00ff41;">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <div>
+                    <h4 style="margin: 0; color: white; font-weight: bold;">Phone</h4>
+                    <p style="margin: 0; color: #cbd5e1;">+351 936 052 219</p>
+                </div>
+            </div>
+            <div style="flex: 1 1 200px; display: flex; align-items: center; gap: 1rem;">
+                <div style="background: #1f2937; padding: 0.75rem; border-radius: 9999px; color: #00ff41;">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div>
+                    <h4 style="margin: 0; color: white; font-weight: bold;">Location</h4>
+                    <p style="margin: 0; color: #cbd5e1;">Vila Nova de Gaia, Porto - Portugal</p>
+                </div>
+            </div>
+            <div style="flex: 1 1 200px; display: flex; align-items: center; gap: 1rem;">
+                <div style="background: #1f2937; padding: 0.75rem; border-radius: 9999px; color: #00ff41;">
+                    <i class="fab fa-linkedin"></i>
+                </div>
+                <div>
+                    <h4 style="margin: 0; color: white; font-weight: bold;">LinkedIn</h4>
+                    <p style="margin: 0; color: #cbd5e1;">linkedin.com/in/joao-victorcastro/</p>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="mailto:joaovictorc2506@gmail.com" style="background-color: #00ff41; color: #0a0e17; font-weight: bold; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; display: inline-block;">
+                <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>Send Me an Email
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="padding: 40px 20px; background-color: #0a0e17; text-align: center;">
+        <div style="color: #00ff41; font-size: 1.5rem; margin-bottom: 1rem;">
+            <i class="fas fa-code"></i>
+        </div>
+        <p style="color: #cbd5e1; margin-bottom: 0.5rem;">© 2024 João Victor. All rights reserved.</p>
+        <p style="color: #6b7280; font-size: 0.875rem;">Web Developer & Full Stack E-commerce Developer</p>
+    </footer>
+
+
+
+    <script>
+        //------ START -- MATRIX EFFECT ------
+        var canvas = document.querySelector('canvas'),
+            ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        var letters = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッンABCDEFGHIJKLMNOPQRSTUVXYZ';
+        letters = letters.split('');
+
+        var fontSize = 16;
+        var columns = canvas.width / fontSize;
+        var drops = [];
+
+        for (var i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, .08)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#0f0';
+            ctx.font = fontSize + 'px monospace';
+
+            for (var i = 0; i < drops.length; i++) {
+                var text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                drops[i]++;
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+            }
+        }
+
+        setInterval(draw, 50);
+        //------ END -- MATRIX EFFECT ------
+
+        //------ START -- PROGRESS BAR ANIMATION ------
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = entry.target.dataset.percent + '%';
+                }
+            });
+        }, {
+            threshold: 0.6
+        });
+
+        document.querySelectorAll('.progress-bar').forEach(el => observer.observe(el));
+        //------ END -- PROGRESS BAR ANIMATION ------
+
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Active Navigation Link on Scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
