@@ -6,276 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>João Victor - Web Developer</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #000;
-            color: white;
-            overflow-x: hidden;
-        }
-
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            display: block;
-        }
-
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: #0a0e17;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            z-index: 1000;
-        }
-
-        .logo {
-            font-weight: 700;
-            color: #00ff41;
-        }
-
-        nav a {
-            margin-left: 2rem;
-            text-decoration: none;
-            color: white;
-            font-weight: 500;
-            position: relative;
-        }
-
-        nav a.active::after,
-        nav a:hover::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background: #00ff41;
-            bottom: -4px;
-            left: 0;
-        }
-
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 1rem;
-        }
-
-        .hero h2 {
-            font-size: 1.5rem;
-            color: #ccc;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 700;
-        }
-
-        .hero p {
-            margin-top: 1rem;
-            font-size: 1.25rem;
-            color: #00ff41;
-        }
-
-        .buttons {
-            margin-top: 2rem;
-            display: flex;
-            gap: 1rem;
-        }
-
-        .buttons a {
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .py-20 {
-            padding-top: 5rem;
-            padding-bottom: 5rem;
-        }
-
-        .primary-btn {
-            background-color: #00ff41;
-            color: #0a0e17;
-        }
-
-        .primary-btn:hover {
-            background-color: #00cc33;
-        }
-
-        /* Color gradiant style for progress bars */
-        .progress-bar {
-            background: linear-gradient(90deg, #00ff41, #00ffaa);
-            height: 6px;
-            border-radius: 3px;
-            transition: width 1.5s ease;
-            width: 0%;
-        }
-
-        .secondary-btn {
-            border: 2px solid #00ff41;
-            color: #00ff41;
-        }
-
-        .secondary-btn:hover {
-            background-color: #00ff41;
-            color: #0a0e17;
-        }
-
-        .scroll-down {
-            position: absolute;
-            bottom: 2rem;
-            font-size: 1.5rem;
-            color: #00ff41;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .about {
-            padding: 100px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4rem;
-            flex-wrap: wrap;
-        }
-
-        .about .avatar {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background-color: #111827;
-            border: 4px dashed #00ff41;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            font-weight: bold;
-            color: #00ff41;
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
-        }
-
-        .about .text {
-            max-width: 600px;
-        }
-
-        .about h2 {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .about h3 {
-            color: #00ff41;
-            font-family: monospace;
-            margin-bottom: 1rem;
-        }
-
-        .about p {
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .about .icons {
-            margin-top: 1.5rem;
-            display: flex;
-            gap: 1rem;
-        }
-
-        .about .icons a {
-            background: #1f2937;
-            color: white;
-            padding: 0.75rem;
-            border-radius: 9999px;
-            transition: transform 0.3s;
-        }
-
-        .about .icons a:hover {
-            transform: scale(1.1);
-            background: #00ff41;
-            color: #0a0e17;
-        }
-
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background-color: #00ff41;
-            color: #0a0e17;
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            z-index: 999;
-        }
-
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        nav a {
-            margin-left: 2rem;
-            text-decoration: none;
-            color: white;
-            font-weight: 500;
-            position: relative;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0%;
-            height: 2px;
-            background: #00ff41;
-            bottom: -4px;
-            left: 0;
-            transition: width 0.4s ease;
-        }
-
-        nav a:hover::after,
-        nav a.active::after {
-            width: 100%;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -290,23 +23,27 @@
     <header>
         <div class="logo">&lt;/&gt; JOÃO<span style="color:white">.VICTOR</span></div>
         <nav>
-            <a href="#home" class="active">Home</a>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#experience">Experience</a>
-            <a href="#education">Education</a>
-            <a href="#contact">Contact</a>
+            <a translationTag="nav_home" href="#home" class="active">Home</a>
+            <a translationTag="nav_about" href="#about">About</a>
+            <a translationTag="nav_skills" href="#skills">Skills</a>
+            <a translationTag="nav_experience" href="#experience">Experience</a>
+            <a translationTag="nav_education" href="#education">Education</a>
+            <a translationTag="nav_contact" href="#contact">Contact</a>
         </nav>
+        <button id="translateBtn"
+            style="margin-left:2rem;background:#00ff41;color:#0a0e17;border:none;padding:0.5rem 1rem;border-radius:8px;font-weight:bold;cursor:pointer;">
+            PT
+        </button>
     </header>
 
     <!-- START ---- GREETINGS SECTION -->
     <section class="hero" id="home">
-        <h2>Hello, I'm</h2>
-        <h1>João Victor</h1>
-        <p>Web Developer &amp; Full Stack E-commerce</p>
+        <h2 translationTag="hero_hello">Hello, I'm</h2>
+        <h1 translationTag="hero_title">João Victor</h1>
+        <p translationTag="hero_desc">Web Developer &amp; Full Stack E-commerce</p>
         <div class="buttons">
-            <a href="#experience" class="primary-btn">View My Experience</a>
-            <a href="#contact" class="secondary-btn">Contact Me</a>
+            <a translationTag="btn_view_experience" href="#experience" class="primary-btn">View My Experience</a>
+            <a translationTag="btn_contact_me" href="#contact" class="secondary-btn">Contact Me</a>
         </div>
         <div class="scroll-down">↓</div>
     </section>
@@ -317,15 +54,24 @@
         <div class="avatar">JV</div>
         <div class="text">
             <h2 style="text-align: center; color: white; font-size: 2rem; font-weight: bold; margin-bottom: 3rem;">
-                About &amp; Me
+                <span translationTag="about_title">About Me</span>
                 <div style="width: 120px; height: 3px; background-color: #00ff41; margin: 0.5rem auto 0;"></div>
             </h2>
-            <h3>Who am I?</h3>
-            <p>I'm a passionate professional in creating impactful and functional digital experiences. With beginner level Python and a strong skill set in web development, including advanced knowledge in HTML, CSS, JavaScript, PHP, and SQL.</p>
-            <p>Having experience in previous positions as a web programmer, I am currently eligible to work in Portugal and Brazil, with proficiency in English at a B2 level and C2 Portuguese.</p>
-            <p>I am excited to contribute my experience in an international environment. In addition to my technical skills, I have mastery over the Microsoft Office Suite, providing a comprehensive and effective approach to projects.</p>
+            <h3 translationTag="about_whoami">Who am I?</h3>
+            <p translationTag="about_desc01">I'm a passionate professional in creating impactful and functional digital
+                experiences. With beginner
+                level Python and a strong skill set in web development, including advanced knowledge in HTML, CSS,
+                JavaScript, PHP, and SQL.</p>
+            <p translationTag="about_desc02">Having experience in previous positions as a web programmer, I am currently
+                eligible to work in Portugal
+                and Brazil, with proficiency in English at a B2 level and C2 Portuguese.</p>
+            <p translationTag="about_desc03">I am excited to contribute my experience in an international environment.
+                In addition to my technical
+                skills, I have mastery over the Microsoft Office Suite, providing a comprehensive and effective approach
+                to projects.</p>
             <div class="icons">
-                <a href="https://www.linkedin.com/in/joao-victorcastro" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.linkedin.com/in/joao-victorcastro" target="_blank"><i
+                        class="fab fa-linkedin-in"></i></a>
                 <a href="mailto:joaovictorc2506@gmail.com"><i class="fas fa-envelope"></i></a>
                 <a href="tel:+351936052219"><i class="fas fa-phone"></i></a>
             </div>
@@ -336,13 +82,14 @@
     <!-- START ---- SKILLS & EXPERTISE SECTION -->
     <section class="skills" id="skills" style="background-color: rgba(10, 14, 23, 0.85); padding: 80px 20px;">
         <h2 style="text-align: center; color: white; font-size: 2rem; font-weight: bold; margin-bottom: 3rem;">
-            Skills &amp; Expertise
+            <span translationTag="skills_title">Skills &amp; Expertise</span>
             <div style="width: 120px; height: 3px; background-color: #00ff41; margin: 0.5rem auto 0;"></div>
         </h2>
         <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; gap: 3rem;">
             <!-- START ---- LEFT COLUMN -->
             <div style="flex: 1; min-width: 280px;">
-                <h3 style="color: #00ff41; font-family: monospace; font-size: 1.5rem; margin-bottom: 1.5rem;">Technical Skills</h3>
+                <h3 translationTag="skills_technical" style="color: #00ff41; font-family: monospace; font-size: 1.5rem; 
+                margin-bottom: 1.5rem;">Technical Skills</h3>
 
                 <div style="margin-bottom: 1rem;">HTML & CSS <span style="float:right">95%</span>
                     <div style="background:#333;height:6px;border-radius:3px;margin-top:5px;overflow:hidden;">
@@ -379,36 +126,60 @@
 
             <!-- START ---- RIGHT COLUMN -->
             <div style="flex: 1; min-width: 280px;">
-                <h3 style="color: #00ff41; font-family: monospace; font-size: 1.5rem; margin-bottom: 1.5rem;">Tools & Technologies</h3>
+                <h3 translationTag="skills_tools" style="color: #00ff41; font-family: monospace; font-size: 1.5rem; 
+                margin-bottom: 1.5rem;">Tools & Technologies</h3>
                 <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2rem;">
                     <span style="background:#1f2937;padding:6px 12px;border-radius:20px;color:white;">SQL Server</span>
                     <span style="background:#1f2937;padding:6px 12px;border-radius:20px;color:white;">MySQL</span>
-                    <span style="background:#1f2937;padding:6px 12px;border-radius:20px;color:white;">JavaScript Extensions</span>
-                    <span style="background:#1f2937;padding:6px 12px;border-radius:20px;color:white;">Power BI</span>
-                    <span style="background:#1f2937;padding:6px 12px;border-radius:20px;color:white;">Microsoft Office Suite</span>
-                    <span style="background:#1f2937;padding:6px 12px;border-radius:20px;color:white;">Web Development</span>
-                    <span style="background:#1f2937;padding:6px 12px;border-radius:20px;color:white;">E-commerce</span>
-                    <span style="background:#1f2937;padding:6px 12px;border-radius:20px;color:white;">Full Stack</span>
+                    <span translationTag="skills_jsextension"
+                        style="background:#1f2937;padding:6px 12px;border-radius:20px;color:white;">
+                        JavaScript Extensions</span>
+                    <span style="background:#1f2937;padding:6px 12px;border-radius:20px;color:white;">
+                        Power BI</span>
+                    <span translationTag="skills_officesuite"
+                        style="background:#1f2937;padding:6px 12px;border-radius:20px;color:white;">
+                        Microsoft Office Suite</span>
+                    <span translationTag="skills_webdevelopment"
+                        style="background:#1f2937;padding:6px 12px;border-radius:20px;color:white;">
+                        Web Development</span>
+                    <span style="background:#1f2937;padding:6px 12px;border-radius:20px;color:white;">
+                        E-commerce</span>
+                    <span style="background:#1f2937;padding:6px 12px;border-radius:20px;color:white;">
+                        Full Stack</span>
                 </div>
 
-                <h3 style="color: #00ff41; font-family: monospace; font-size: 1.5rem; margin-bottom: 1rem;">Languages</h3>
-                <div style="margin-bottom: 1rem;">Portuguese <span style="float:right">C2 (Fluent)</span>
+                <h3 translationTag="skills_languages"
+                    style="color: #00ff41; font-family: monospace; font-size: 1.5rem; margin-bottom: 1rem;">Languages
+                </h3>
+                <div style="margin-bottom: 1rem;"> <span translationTag="skills_portuguese">Portuguese </span> <span
+                        translationTag="skills_c2fluent" style="float:right">C2 (Fluent)</span>
                     <div style="background:#333;height:6px;border-radius:3px;margin-top:5px;overflow:hidden;">
                         <div class="progress-bar" data-percent="100"></div>
                     </div>
                 </div>
-                <div style="margin-bottom: 2rem;">English <span style="float:right">B2</span>
+                <div style="margin-bottom: 2rem;"><span translationTag="skills_english">English</span> <span
+                        translationTag="skills_b2" style="float:right">B2</span>
                     <div style="background:#333;height:6px;border-radius:3px;margin-top:5px;overflow:hidden;">
                         <div class="progress-bar" data-percent="75"></div>
                     </div>
                 </div>
 
-                <h3 style="color: #00ff41; font-family: monospace; font-size: 1.5rem; margin-bottom: 1rem;">Soft Skills</h3>
-                <ul style="list-style:none; padding-left:0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; color: white;">
-                    <li><i class="fas fa-users" style="color:#00ff41;margin-right:8px;"></i>Team Collaboration</li>
-                    <li><i class="fas fa-tasks" style="color:#00ff41;margin-right:8px;"></i>Problem Solving</li>
-                    <li><i class="fas fa-comments" style="color:#00ff41;margin-right:8px;"></i>Communication</li>
-                    <li><i class="fas fa-lightbulb" style="color:#00ff41;margin-right:8px;"></i>Agile Methodologies</li>
+                <h3 translationTag="skills_softskills"
+                    style="color: #00ff41; font-family: monospace; font-size: 1.5rem; margin-bottom: 1rem;">Soft Skills
+                </h3>
+                <ul
+                    style="list-style:none; padding-left:0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; color: white;">
+                    <li><i class="fas fa-users" style="color:#00ff41;margin-right:8px;">
+                        </i><span translationTag="skills_teamcolaboration">Team Collaboration</span></li>
+
+                    <li><i class="fas fa-tasks" style="color:#00ff41;margin-right:8px;">
+                        </i><span translationTag="skills_problemsolving">Problem Solving</span></li>
+
+                    <li><i class="fas fa-comments" style="color:#00ff41;margin-right:8px;">
+                        </i><span translationTag="skills_communication">Communication</span></li>
+
+                    <li><i class="fas fa-lightbulb" style="color:#00ff41;margin-right:8px;">
+                        </i><span translationTag="skills_agilemethodologies">Agile Methodologies</span></li>
                 </ul>
             </div>
             <!-- END ---- RIGHT COLUMN -->
@@ -416,108 +187,144 @@
     </section>
     <!-- END ---- SKILLS & EXPERTISE SECTION -->
 
-    <!-- EXPERIENCE SECTION -->
+    <!-- START ---- EXPERIENCE SECTION -->
     <section id="experience" style="background-color: rgba(10, 14, 23, 0.95); padding: 80px 20px;">
         <h2 style="text-align: center; color: white; font-size: 2rem; font-weight: bold; margin-bottom: 3rem;">
-            Work Experience
+            <span translationTag="experience_title">Work Experience</span>
             <div style="width: 160px; height: 3px; background-color: #00ff41; margin: 0.5rem auto 0;"></div>
         </h2>
         <div style="max-width: 900px; margin: auto; display: flex; flex-direction: column; gap: 3rem;">
-            <!-- Experience Block -->
+            <!-- START ---- EXPERIENCE BLOCK 03 -->
             <div style="display: flex; gap: 1rem; align-items: flex-start;">
                 <div style="display: flex; flex-direction: column; align-items: center; position: relative;">
                     <div style="width: 2px; height: 2200%; background: #00ff41; position: absolute; top: 10px;"></div>
-                    <div style="width: 10px; height: 10px; background-color: #00ff41; border-radius: 50%; z-index: 1;"></div>
+                    <div style="width: 10px; height: 10px; background-color: #00ff41; border-radius: 50%; z-index: 1;">
+                    </div>
                 </div>
                 <div style="background-color: #1f2937; padding: 1.5rem; border-radius: 10px; flex: 1;">
-                    <p style="color: #00ff41; font-family: monospace; margin-bottom: 0.5rem;">10/2024 - Present</p>
-                    <h3 style="color: #00ff41; font-weight: bold; margin-bottom: 0.25rem;">Full Stack E-commerce Developer</h3>
-                    <h4 style="color: white; margin-bottom: 1rem;">Presenca de luxo - PT</h4>
+                    <p translationTag="experience03_time"
+                        style="color: #00ff41; font-family: monospace; margin-bottom: 0.5rem;">10/2024 - Present</p>
+                    <h3 translationTag="experience03_title"
+                        style="color: #00ff41; font-weight: bold; margin-bottom: 0.25rem;">Full Stack E-commerce
+                        Developer</h3>
+                    <h4 style="color: white; margin-bottom: 1rem;">Presenca de Luxo - PT</h4>
                     <ul style="padding-left: 1.2rem; color: #cbd5e1; list-style-type: disc;">
-                        <li>Responsible for the development of systems for the financial, HR, and administrative sectors.</li>
-                        <li>Investigation and problem-solving in a team, using agile methodologies.</li>
-                        <li>Conducting tests and continuous improvements to ensure the usability and performance of the systems.</li>
-                        <li>Assisting in the construction of web pages.</li>
-                        <li>Use of JavaScript extensions and interaction with databases.</li>
+                        <li translationTag="experience03_desc01">Responsible for the development of systems for the
+                            financial, HR, and administrative
+                            sectors.</li>
+                        <li translationTag="experience03_desc02">Investigation and problem-solving in a team, using
+                            agile methodologies.</li>
+                        <li translationTag="experience03_desc03">Conducting tests and continuous improvements to ensure
+                            the usability and performance of the
+                            systems.</li>
+                        <li translationTag="experience03_desc04">Assisting in the construction of web pages.</li>
+                        <li translationTag="experience03_desc05">Use of JavaScript extensions and interaction with
+                            databases.</li>
+                        <li translationTag="experience03_desc06">Creation and management of prestashop modules.</li>
                     </ul>
                 </div>
             </div>
+            <!-- END ---- EXPERIENCE BLOCK 03 -->
 
-            <!-- Experience Block -->
+            <!-- START ---- EXPERIENCE BLOCK 02-->
             <div style="display: flex; gap: 1rem; align-items: flex-start;">
                 <div style="display: flex; flex-direction: column; align-items: center; position: relative;">
                     <div style="width: 2px; height: 2400%; background: #00ff41; position: absolute; top: 10px;"></div>
-                    <div style="width: 10px; height: 10px; background-color: #00ff41; border-radius: 50%; z-index: 1;"></div>
+                    <div style="width: 10px; height: 10px; background-color: #00ff41; border-radius: 50%; z-index: 1;">
+                    </div>
                 </div>
                 <div style="background-color: #1f2937; padding: 1.5rem; border-radius: 10px; flex: 1;">
-                    <p style="color: #00ff41; font-family: monospace; margin-bottom: 0.5rem;">02/2021 - 07/2022</p>
-                    <h3 style="color: #00ff41; font-weight: bold; margin-bottom: 0.25rem;">Trainee TI</h3>
+                    <p translationTag="experience02_time"
+                        style="color: #00ff41; font-family: monospace; margin-bottom: 0.5rem;">02/2021 - 07/2022</p>
+                    <h3 translationTag="experience02_title"
+                        style="color: #00ff41; font-weight: bold; margin-bottom: 0.25rem;">Trainee TI</h3>
                     <h4 style="color: white; margin-bottom: 1rem;">NTL Nova Tecnologia Ltda - BR</h4>
                     <ul style="padding-left: 1.2rem; color: #cbd5e1; list-style-type: disc;">
-                        <li>System Development (for financial, HR and administrative sectors)</li>
-                        <li>Problem investigation and solution creation alongside the team in an agile manner.</li>
-                        <li>Testing and continuous improvement of usability and performance.</li>
-                        <li>Report elaboration.</li>
-                        <li>Supporting in page building.</li>
-                        <li>Working with JavaScript extensions and databases.</li>
+                        <li translationTag="experience02_desc01">System Development (for financial, HR and
+                            administrative sectors)</li>
+                        <li translationTag="experience02_desc02">Problem investigation and solution creation alongside
+                            the team in an agile manner.</li>
+                        <li translationTag="experience02_desc03">Testing and continuous improvement of usability and
+                            performance.</li>
+                        <li translationTag="experience02_desc04">Report elaboration.</li>
+                        <li translationTag="experience02_desc05">Supporting in page building.</li>
+                        <li translationTag="experience02_desc06">Working with JavaScript extensions and databases.</li>
                     </ul>
                 </div>
             </div>
+            <!-- END ---- EXPERIENCE BLOCK 02-->
 
-            <!-- Experience Block -->
+            <!-- START ---- EXPERIENCE BLOCK 01-->
             <div style="display: flex; gap: 1rem; align-items: flex-start;">
                 <div style="display: flex; flex-direction: column; align-items: center; position: relative;">
                     <div style="width: 2px; height: 2780%; background: #00ff41; position: absolute; top: 10px;"></div>
-                    <div style="width: 10px; height: 10px; background-color: #00ff41; border-radius: 50%; z-index: 10;"></div>
+                    <div style="width: 10px; height: 10px; background-color: #00ff41; border-radius: 50%; z-index: 10;">
+                    </div>
                 </div>
                 <div style="background-color: #1f2937; padding: 1.5rem; border-radius: 10px; flex: 1;">
-                    <p style="color: #00ff41; font-family: monospace; margin-bottom: 0.5rem;">12/2020 - 01/2021</p>
-                    <h3 style="color: #00ff41; font-weight: bold; margin-bottom: 0.25rem;">Programmer</h3>
+                    <p translationTag="experience01_time"
+                        style="color: #00ff41; font-family: monospace; margin-bottom: 0.5rem;">12/2020 - 01/2021</p>
+                    <h3 translationTag="experience01_title"
+                        style="color: #00ff41; font-weight: bold; margin-bottom: 0.25rem;">Web Developer</h3>
                     <h4 style="color: white; margin-bottom: 1rem;">RASV LIMITED – BR</h4>
                     <ul style="padding-left: 1.2rem; color: #cbd5e1; list-style-type: disc;">
-                        <li>Perform maintenance on existing software.</li>
-                        <li>Participate in meetings with leadership.</li>
-                        <li>Alignment and update of daily activities with squads.</li>
-                        <li>Contribute to project execution.</li>
-                        <li>Develop queries for SQL Server and MySQL databases.</li>
-                        <li>Interpret projects and needs with a systemic vision.</li>
-                        <li>Develop, execute, and implement web system projects using programming languages, within appropriate standards of quality, efficiency, and security.</li>
+                        <li translationTag="experience01_desc01">Perform maintenance on existing software.</li>
+                        <li translationTag="experience01_desc02">Participate in meetings with leadership.</li>
+                        <li translationTag="experience01_desc03">Alignment and update of daily activities with squads.
+                        </li>
+                        <li translationTag="experience01_desc04">Contribute to project execution.</li>
+                        <li translationTag="experience01_desc05">Develop queries for SQL Server and MySQL databases.
+                        </li>
+                        <li translationTag="experience01_desc06">Interpret projects and needs with a systemic vision.
+                        </li>
+                        <li translationTag="experience01_desc07">Develop, execute, and implement web system projects
+                            using programming languages, within
+                            appropriate standards of quality, efficiency, and security.</li>
                     </ul>
                 </div>
             </div>
+            <!-- END ---- EXPERIENCE BLOCK 01-->
         </div>
     </section>
+    <!-- END ---- EXPERIENCE SECTION -->
 
 
-    <!-- EDUCATION SECTION -->
+    <!-- START ---- EDUCATION SECTION -->
     <section id="education" style="background-color: rgba(10, 14, 23, 0.85); padding: 80px 20px;">
         <h2 style="text-align: center; color: white; font-size: 2rem; font-weight: bold; margin-bottom: 2rem;">
-            Education
+            <span translationTag="education_title">Education</span>
             <div style="width: 120px; height: 3px; background-color: #00ff41; margin: 0.5rem auto 0;"></div>
         </h2>
         <div style="max-width: 700px; margin: auto; background-color: #1f2937; padding: 1.5rem; border-radius: 10px;">
-            <h3 style="color: #00ff41; font-weight: bold; margin-bottom: 0.25rem;">Bachelor’s degree in Information Systems</h3>
-            <h4 style="color: white; margin-bottom: 0.5rem;">Estácio de Sá University - UNESA</h4>
-            <p style="color: #cbd5e1; margin-bottom: 0.75rem;">Completed in 2023</p>
+            <h3 translationTag="education_course" style="color: #00ff41; font-weight: bold; margin-bottom: 0.25rem;">
+                Bachelor’s degree in Information
+                Systems</h3>
+            <h4 translationTag="education_institution" style="color: white; margin-bottom: 0.5rem;">Estácio de Sá
+                University - UNESA</h4>
+            <p translationTag="education_time" style="color: #cbd5e1; margin-bottom: 0.75rem;">Completed in 2023</p>
             <p style="color: #cbd5e1;"><i class="fas fa-graduation-cap" style="margin-right: 8px; color: #00ff41;"></i>
-                Comprehensive education in information systems, focusing on software development, database management, and IT infrastructure.
+                <span translationTag="education_desc">Comprehensive education in information systems, focusing on
+                    software development, database management,
+                    and IT infrastructure.</span>
             </p>
         </div>
     </section>
+    <!-- END ---- EDUCATION SECTION -->
 
-    <!-- CONTACT SECTION -->
+    <!-- START ---- CONTACT SECTION -->
     <section id="contact" style="background-color: rgba(10, 14, 23, 0.95); padding: 80px 20px;">
         <h2 style="text-align: center; color: white; font-size: 2rem; font-weight: bold; margin-bottom: 1rem;">
-            Get In Touch
+            <span translationTag="contact_title">Get In Touch </span>
+            <div style="width: 120px; height: 3px; background-color: #00ff41; margin: 0.5rem auto 0;"></div>
         </h2>
-        <p style="text-align: center; color: #00ff41; font-family: monospace; font-size: 1rem; margin-bottom: 2rem;">Contact Information</p>
-        <div style="max-width: 800px; margin: auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;">
+        <div
+            style="max-width: 800px; margin: auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;">
             <div style="flex: 1 1 200px; display: flex; align-items: center; gap: 1rem;">
                 <div style="background: #1f2937; padding: 0.75rem; border-radius: 9999px; color: #00ff41;">
                     <i class="fas fa-envelope"></i>
                 </div>
                 <div>
-                    <h4 style="margin: 0; color: white; font-weight: bold;">Email</h4>
+                    <h4 translationTag="contact_email" style="margin: 0; color: white; font-weight: bold;">E-mail</h4>
                     <p style="margin: 0; color: #cbd5e1;">joaovictorc2506@gmail.com</p>
                 </div>
             </div>
@@ -526,7 +333,7 @@
                     <i class="fas fa-phone"></i>
                 </div>
                 <div>
-                    <h4 style="margin: 0; color: white; font-weight: bold;">Phone</h4>
+                    <h4 translationTag="contact_phone" style="margin: 0; color: white; font-weight: bold;">Phone</h4>
                     <p style="margin: 0; color: #cbd5e1;">+351 936 052 219</p>
                 </div>
             </div>
@@ -535,7 +342,8 @@
                     <i class="fas fa-map-marker-alt"></i>
                 </div>
                 <div>
-                    <h4 style="margin: 0; color: white; font-weight: bold;">Location</h4>
+                    <h4 translationTag="contact_location" style="margin: 0; color: white; font-weight: bold;">Location
+                    </h4>
                     <p style="margin: 0; color: #cbd5e1;">Vila Nova de Gaia, Porto - Portugal</p>
                 </div>
             </div>
@@ -544,25 +352,31 @@
                     <i class="fab fa-linkedin"></i>
                 </div>
                 <div>
-                    <h4 style="margin: 0; color: white; font-weight: bold;">LinkedIn</h4>
+                    <h4 translationTag="contact_linkedin" style="margin: 0; color: white; font-weight: bold;">LinkedIn
+                    </h4>
                     <p style="margin: 0; color: #cbd5e1;">linkedin.com/in/joao-victorcastro/</p>
                 </div>
             </div>
         </div>
         <div style="text-align: center; margin-top: 2rem;">
-            <a href="mailto:joaovictorc2506@gmail.com" style="background-color: #00ff41; color: #0a0e17; font-weight: bold; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; display: inline-block;">
-                <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>Send Me an Email
+            <a href="mailto:joaovictorc2506@gmail.com"
+                style="background-color: #00ff41; color: #0a0e17; font-weight: bold; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; display: inline-block;">
+                <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>
+                <span translationTag="btn_send_email">Send Me an Email</span>
             </a>
         </div>
     </section>
+    <!-- END ---- CONTACT SECTION -->
 
     <!-- FOOTER -->
     <footer style="padding: 40px 20px; background-color: #0a0e17; text-align: center;">
         <div style="color: #00ff41; font-size: 1.5rem; margin-bottom: 1rem;">
             <i class="fas fa-code"></i>
         </div>
-        <p style="color: #cbd5e1; margin-bottom: 0.5rem;">© 2024 João Victor. All rights reserved.</p>
-        <p style="color: #6b7280; font-size: 0.875rem;">Web Developer & Full Stack E-commerce Developer</p>
+        <p translationTag="footer_rights" style="color: #cbd5e1; margin-bottom: 0.5rem;">© 2025 João Victor. All rights
+            mostly reserved.</p>
+        <p translationTag="footer_dev" style="color: #6b7280; font-size: 0.875rem;">Web Developer & Full Stack
+            E-commerce Developer</p>
     </footer>
 
 
@@ -660,6 +474,171 @@
                     link.classList.add('active');
                 }
             });
+        });
+
+        const translations = {
+            en: {
+                "nav_home": "Home",
+                "nav_about": "About",
+                "nav_skills": "Skills",
+                "nav_experience": "Experience",
+                "nav_education": "Education",
+                "nav_contact": "Contact",
+                "hero_hello": "Hello, I'm",
+                "hero_title": "João Victor",
+                "hero_desc": "Web Developer & Full Stack E-commerce",
+                "btn_view_experience": "View My Experience",
+                "btn_contact_me": "Contact Me",
+                "about_title": "About Me",
+                "about_whoami": "Who am I?",
+                "about_desc01": "I'm a passionate professional in creating impactful and functional digital experiences. With beginner level Python and a strong skill set in web development, including advanced knowledge in HTML, CSS, JavaScript, PHP, and SQL.",
+                "about_desc02": "Having experience in previous positions as a web programmer, I am currently eligible to work in Portugal and Brazil, with proficiency in English at a B2 level and C2 Portuguese.",
+                "about_desc03": "I'm excited to contribute my experience in an international environment. In addition to my technical skills, I have mastery over the Microsoft Office Suite, providing a comprehensive and effective approach to projects.",
+                "skills_title": "Skills & Expertise",
+                "skills_technical": "Technical Skills",
+                "skills_tools": "Tools & Technologies",
+                "skills_jsextension": "JavaScript Extensions",
+                "skills_officesuite": "Microsoft Office Suite",
+                "skills_webdevelopment": "Web Development",
+                "skills_languages": "Languages",
+                "skills_portuguese": "Portuguese",
+                "skills_c2fluent": "C2 (Fluent)",
+                "skills_english": "English",
+                "skills_b2": "B2",
+                "skills_softskills": "Soft Skills",
+                "skills_teamcolaboration": "Team Collaboration",
+                "skills_problemsolving": "Problem Solving",
+                "skills_communication": "Communication",
+                "skills_agilemethodologies": "Agile Methodologies",
+                "experience_title": "Work Experience",
+                /* ------ */
+                "experience03_time": "10/2024 - Present",
+                "experience02_time": "02/2021 - 07/2022",
+                "experience01_time": "12/2020 - 01/2021",
+                "experience03_title": "Full Stack E-commerce Developer",
+                "experience02_title": "Trainee TI",
+                "experience01_title": "Web Developer",
+                "experience03_desc01": "Responsible for the development of systems for the financial, HR, and administrative sectors.",
+                "experience03_desc02": "Investigation and problem-solving in a team, using agile methodologies.",
+                "experience03_desc03": "Conducting tests and continuous improvements to ensure the usability and performance of the systems.",
+                "experience03_desc04": "Assisting in the construction of web pages.",
+                "experience03_desc05": "Use of JavaScript extensions and interaction with databases.",
+                "experience03_desc06": "Creation and management of prestashop modules.",
+                "experience02_desc01": "System Development (for financial, HR and administrative sectors)",
+                "experience02_desc02": "Problem investigation and solution creation alongside the team in an agile manner.",
+                "experience02_desc03": "Testing and continuous improvement of usability and performance.",
+                "experience02_desc04": "Report elaboration.",
+                "experience02_desc05": "Supporting in page building.",
+                "experience02_desc06": "Working with JavaScript extensions and databases.",
+                "experience01_desc01": "Perform maintenance on existing software.",
+                "experience01_desc02": "Participate in meetings with leadership.",
+                "experience01_desc03": "Alignment and update of daily activities with squads.",
+                "experience01_desc04": "Contribute to project execution.",
+                "experience01_desc05": "Develop queries for SQL Server and MySQL databases.",
+                "experience01_desc06": "Interpret projects and needs with a systemic vision.",
+                "experience01_desc07": "Develop, execute, and implement web system projects using programming languages, within appropriate standards of quality, efficiency, and security.",
+
+                /* ------ */
+                "education_title": "Education",
+                "education_course": "Bachelor’s degree in Information Systems",
+                "education_institution": "Estácio de Sá University - UNESA",
+                "education_time": "Completed in 2023",
+                "education_desc": "Comprehensive education in information systems, focusing on software development, database management, and IT infrastructure.",
+                /* ------ */
+                "contact_title": "Get In Touch",
+                "contact_email": "E-mail",
+                "contact_phone": "Phone",
+                "contact_location": "Location",
+                "contact_linkedin": "LinkedIn",
+                "btn_send_email": "Send Me an Email",
+                "footer_rights": "© 2025 João Victor. All rights mostly reserved.",
+                "footer_dev": "Web Developer & Full Stack E-commerce Developer",
+            }
+            , pt: {
+                "nav_home": "Início",
+                "nav_about": "Sobre",
+                "nav_skills": "Habilidades",
+                "nav_experience": "Experiência",
+                "nav_education": "Educação",
+                "nav_contact": "Contato",
+                "hero_hello": "Olá, eu sou",
+                "hero_title": "João Victor",
+                "hero_desc": "Desenvolvedor Web & Full Stack E-commerce",
+                "btn_view_experience": "Ver Minha Experiência",
+                "btn_contact_me": "Entre em Contato",
+                "about_title": "Sobre mim",
+                "about_whoami": "Quem sou eu?",
+                "about_desc01": "Sou um profissional apaixonado por criar experiências digitais impactantes e funcionais. Com nível iniciante em Python e um sólido conjunto de habilidades em desenvolvimento web, incluindo conhecimento avançado em HTML, CSS, JavaScript, PHP e SQL.",
+                "about_desc02": "Com experiência em cargos anteriores como programador web, atualmente sou elegível para trabalhar em Portugal e Brasil, com proficiência em inglês nível B2 e português C2.",
+                "about_desc03": "Estou animado para contribuir com minha experiência em um ambiente internacional. Além das minhas habilidades técnicas, tenho domínio sobre o Microsoft Office Suite, proporcionando uma abordagem abrangente e eficaz para projetos.",
+                "skills_title": "Habilidades & Experiência",
+                "skills_technical": "Habilidades Técnicas",
+                "skills_tools": "Ferramentas & Tecnologias",
+                "skills_jsextension": "Extensões JavaScript",
+                "skills_officesuite": "Pacote Microsoft Office",
+                "skills_webdevelopment": "Desenvolvimento Web",
+                "skills_languages": "Idiomas",
+                "skills_portuguese": "Português",
+                "skills_c2fluent": "C2 (Fluente)",
+                "skills_english": "Inglês",
+                "skills_b2": "B2",
+                "skills_softskills": "Competências Comportamentais",
+                "skills_teamcolaboration": "Colaboração em Equipe",
+                "skills_problemsolving": "Resolução de Problemas",
+                "skills_communication": "Comunicação",
+                "skills_agilemethodologies": "Metodologias Ágeis",
+                "experience_title": "Experiência Profissional",
+                "experience03_time": "10/2024 - Presente",
+                "experience02_time": "02/2021 - 07/2022",
+                "experience01_time": "12/2020 - 01/2021",
+                "experience03_title": "Desenvolvedor Full Stack E-commerce",
+                "experience02_title": "Jovem Aprendiz TI",
+                "experience01_title": "Programador Web",
+                "experience03_desc01": "Responsável pelo desenvolvimento e adpação de sistemas para os setores financeiro, RH e administrativo.",
+                "experience03_desc02": "Investigação e resolução de problemas em equipe, utilizando metodologias ágeis.",
+                "experience03_desc03": "Realização de testes e melhorias contínuas para garantir a usabilidade e desempenho dos sistemas.",
+                "experience03_desc04": "Auxílio na construção de páginas web.",
+                "experience03_desc05": "Uso de extensões JavaScript e interação com bancos de dados.",
+                "experience03_desc06": "Criação e gestão de módulos prestashop.",
+                "experience02_desc01": "Responsável pelo desenvolvimento e adpação de sistemas para os setores financeiro, RH e administrativo.",
+                "experience02_desc02": "Investigação de problemas e criação de soluções junto à equipe de forma ágil.",
+                "experience02_desc03": "Testes e melhoria contínua de usabilidade e desempenho.",
+                "experience02_desc04": "Elaboração de relatórios.",
+                "experience02_desc05": "Apoio na construção de páginas.",
+                "experience02_desc06": "Trabalho com extensões JavaScript e bancos de dados.",
+                "experience01_desc01": "Realizar manutenção em softwares existentes.",
+                "experience01_desc02": "Participar de reuniões com a liderança.",
+                "experience01_desc03": "Alinhamento e atualização das atividades diárias com diferentes equipes.",
+                "experience01_desc04": "Contribuir para a execução de projetos.",
+                "experience01_desc05": "Responsável pelo desenvolvimento de bancos de dados SQL Server e MySQL.",
+                "experience01_desc06": "Interpretar projetos e necessidades com precisão.",
+                "experience01_desc07": "Desenvolver, executar e implementar projetos de sistemas web utilizando linguagens de programação, dentro dos padrões adequados de qualidade, eficiência e segurança.",
+                "education_title": "Educação",
+                "education_title": "Educação",
+                "education_course": "Bacharelado em Sistemas de Informação",
+                "education_institution": "Universidade Estácio de Sá - UNESA",
+                "education_time": "Concluído em 2023",
+                "education_desc": "Formação abrangente em sistemas de informação, com foco em desenvolvimento de software, gestão de bancos de dados e infraestrutura de TI.",
+                "contact_title": "Entre em Contato",
+                "contact_email": "E-mail",
+                "contact_phone": "Telefone",
+                "contact_location": "Localização",
+                "contact_linkedin": "LinkedIn",
+                "btn_send_email": "Envie-me um Email",
+                "footer_rights": "© 2025 João Victor. Maioria dos direitos reservados.",
+                "footer_dev": "Desenvolvedor Web & Full Stack E-commerce"
+            }
+        };
+
+        let currentLang = 'en';
+
+        document.getElementById('translateBtn').addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'pt' : 'en';
+            for (const key in translations[currentLang]) {
+                const el = document.querySelector(`[translationTag="${key}"]`);
+                if (el) el.textContent = translations[currentLang][key];
+            }
+            document.getElementById('translateBtn').textContent = currentLang === 'en' ? 'PT' : 'EN';
         });
     </script>
 </body>

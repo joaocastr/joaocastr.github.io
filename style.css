@@ -1,0 +1,266 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #000;
+    color: white;
+    overflow-x: hidden;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    display: block;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #0a0e17;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    z-index: 1000;
+}
+
+.logo {
+    font-weight: 700;
+    color: #00ff41;
+}
+
+nav a {
+    margin-left: 2rem;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    position: relative;
+}
+
+nav a.active::after,
+nav a:hover::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: #00ff41;
+    bottom: -4px;
+    left: 0;
+}
+
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.hero h2 {
+    font-size: 1.5rem;
+    color: #ccc;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.hero p {
+    margin-top: 1rem;
+    font-size: 1.25rem;
+    color: #00ff41;
+}
+
+.buttons {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.buttons a {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.py-20 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.primary-btn {
+    background-color: #00ff41;
+    color: #0a0e17;
+}
+
+.primary-btn:hover {
+    background-color: #00cc33;
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, #00ff41, #00ffaa);
+    height: 6px;
+    border-radius: 3px;
+    transition: width 1.5s ease;
+    width: 0%;
+}
+
+.secondary-btn {
+    border: 2px solid #00ff41;
+    color: #00ff41;
+}
+
+.secondary-btn:hover {
+    background-color: #00ff41;
+    color: #0a0e17;
+}
+
+.scroll-down {
+    position: absolute;
+    bottom: 2rem;
+    font-size: 1.5rem;
+    color: #00ff41;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.about {
+    padding: 100px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+}
+
+.about .avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #111827;
+    border: 4px dashed #00ff41;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #00ff41;
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
+}
+
+.about .text {
+    max-width: 600px;
+}
+
+.about h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.about h3 {
+    color: #00ff41;
+    font-family: monospace;
+    margin-bottom: 1rem;
+}
+
+.about p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.about .icons {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.about .icons a {
+    background: #1f2937;
+    color: white;
+    padding: 0.75rem;
+    border-radius: 9999px;
+    transition: transform 0.3s;
+}
+
+.about .icons a:hover {
+    transform: scale(1.1);
+    background: #00ff41;
+    color: #0a0e17;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: #00ff41;
+    color: #0a0e17;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 999;
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+nav a {
+    margin-left: 2rem;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: #00ff41;
+    bottom: -4px;
+    left: 0;
+    transition: width 0.4s ease;
+}
+
+nav a:hover::after,
+nav a.active::after {
+    width: 100%;
+}
