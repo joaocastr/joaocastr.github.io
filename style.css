@@ -26,20 +26,26 @@ canvas {
 }
 
 header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: #0a0e17;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    z-index: 1000;
+    justify-content: space-between;
+    position: relative;
+    padding: 0 1rem;
+    height: 64px;
 }
 
 .logo {
-    font-weight: 700;
+    flex: 1 1 auto;
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: monospace;
     color: #00ff41;
+    letter-spacing: 1px;
+    z-index: 1001;
+}
+
+.nav-toggle {
+    z-index: 1100;
 }
 
 nav a {
@@ -233,16 +239,18 @@ nav a:hover::after {
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
-    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
     cursor: pointer;
     opacity: 0;
     pointer-events: none;
     transition: background 0.2s, color 0.2s, opacity 0.3s;
 }
+
 #backToTop.show {
     opacity: 1;
     pointer-events: auto;
 }
+
 #backToTop:hover {
     background: #00ff41;
     color: #0a0e17;
@@ -296,7 +304,7 @@ nav a.active::after {
     font-size: 1.3rem;
     transition: background 0.2s, color 0.2s, box-shadow 0.2s;
     text-decoration: none;
-    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
 }
 
 .hoverbuttons a:hover {
@@ -320,6 +328,7 @@ nav a.active::after {
     transition: background 0.2s, color 0.2s, border 0.2s;
     margin-left: 2rem;
 }
+
 .outline-btn:hover,
 .outline-btn:focus {
     background: #00ff41;
@@ -341,6 +350,7 @@ nav a.active::after {
     cursor: pointer;
     z-index: 1100;
 }
+
 .nav-toggle span {
     display: block;
     width: 28px;
@@ -353,74 +363,70 @@ nav a.active::after {
 
 /* Responsive nav */
 @media (max-width: 800px) {
+    header {
+        position: relative;
+    }
+
+    .nav-toggle {
+        display: flex;
+        position: relative;
+        left: 0;
+        z-index: 1100;
+    }
+
     nav#mainNav {
         position: absolute;
         top: 64px;
-        right: 0;
+        /* adjust if your header is taller */
+        left: 0;
+        /* align to the left */
+        right: auto;
         background: #1f2937;
         width: 200px;
         display: none;
         flex-direction: column;
         align-items: flex-start;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
         padding: 1rem 0.5rem;
         z-index: 1000;
     }
+
     nav#mainNav.open {
         display: flex;
-    }
-    nav#mainNav a {
-        width: 100%;
-        padding: 0.75rem 1rem;
-        font-size: 1.1rem;
-        color: #00ff41;
-        border-radius: 6px;
-        margin: 0.25rem 0;
-    }
-    nav#mainNav a.active,
-    nav#mainNav a:hover {
-        background: #00ff41;
-        color: #0a0e17;
-    }
-    .nav-toggle {
-        display: flex;
-    }
-    header {
-        position: relative;
-    }
-    nav#mainNav,
-    .nav-toggle {
-        z-index: 1000;
-    }
-    nav#mainNav {
-        /* Hide nav by default on mobile */
-        display: none;
     }
 }
 
 /* General responsive adjustments */
-body, html {
+body,
+html {
     width: 100%;
     overflow-x: hidden;
 }
 
 /* Responsive container */
-section, .about, .skills, #contact, #education, #experience {
+section,
+.about,
+.skills,
+#contact,
+#education,
+#experience {
     max-width: 100vw;
     box-sizing: border-box;
 }
 
 /* Responsive flex layouts */
 @media (max-width: 900px) {
-    .skills > div,
-    #contact > div,
-    #experience > div {
+
+    .skills>div,
+    #contact>div,
+    #experience>div {
         flex-direction: column !important;
         gap: 2rem !important;
     }
-    .skills > div > div,
-    #contact > div > div,
-    #experience > div > div {
+
+    .skills>div>div,
+    #contact>div>div,
+    #experience>div>div {
         min-width: 0 !important;
         width: 100% !important;
     }
@@ -428,6 +434,7 @@ section, .about, .skills, #contact, #education, #experience {
 
 /* Responsive padding and font sizes */
 @media (max-width: 600px) {
+
     section,
     .about,
     .skills,
@@ -436,17 +443,24 @@ section, .about, .skills, #contact, #education, #experience {
     #experience {
         padding: 32px 8px !important;
     }
-    h1, h2, h3, h4 {
+
+    h1,
+    h2,
+    h3,
+    h4 {
         font-size: 1.2rem !important;
     }
+
     .logo {
         font-size: 1.1rem !important;
     }
+
     .avatar {
         font-size: 2rem !important;
         width: 48px !important;
         height: 48px !important;
     }
+
     .buttons a,
     .outline-btn,
     .primary-btn,
@@ -454,14 +468,17 @@ section, .about, .skills, #contact, #education, #experience {
         padding: 0.5rem 1rem !important;
         font-size: 1rem !important;
     }
+
     nav {
         flex-direction: column !important;
         gap: 0.5rem !important;
     }
+
     nav a {
         font-size: 1rem !important;
         padding: 0.5rem 0 !important;
     }
+
     .icon_circle {
         width: 36px !important;
         height: 36px !important;
@@ -470,7 +487,9 @@ section, .about, .skills, #contact, #education, #experience {
 }
 
 /* midia style */
-canvas, img, video {
+canvas,
+img,
+video {
     max-width: 100%;
     height: auto;
     display: block;
@@ -487,7 +506,7 @@ canvas, img, video {
     align-items: center;
 }
 
-.contact-grid > div {
+.contact-grid>div {
     display: flex;
     flex-direction: column;
     align-items: center;
