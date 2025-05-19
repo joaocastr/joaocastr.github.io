@@ -1,4 +1,3 @@
-
 //------ START -- MATRIX EFFECT ------
 var canvas = document.querySelector('canvas'),
     ctx = canvas.getContext('2d');
@@ -252,4 +251,8 @@ document.getElementById('translateBtn').addEventListener('click', () => {
         if (el) el.textContent = translations[currentLang][key];
     }
     document.getElementById('translateBtn').textContent = currentLang === 'en' ? 'PT' : 'EN';
+});
+
+document.getElementById('navToggle').addEventListener('click', function() {
+    document.getElementById('mainNav').classList.toggle('open');
 });

@@ -328,6 +328,77 @@ nav a.active::after {
     outline: none;
 }
 
+/* Hamburger button styles */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+}
+.nav-toggle span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    margin: 4px 0;
+    background: #00ff41;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+/* Responsive nav */
+@media (max-width: 800px) {
+    nav#mainNav {
+        position: absolute;
+        top: 64px; /* adjust if your header is taller */
+        right: 0;
+        background: #1f2937;
+        width: 200px;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        padding: 1rem 0.5rem;
+        z-index: 1000;
+    }
+    nav#mainNav.open {
+        display: flex;
+    }
+    nav#mainNav a {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: 1.1rem;
+        color: #00ff41;
+        border-radius: 6px;
+        margin: 0.25rem 0;
+    }
+    nav#mainNav a.active,
+    nav#mainNav a:hover {
+        background: #00ff41;
+        color: #0a0e17;
+    }
+    .nav-toggle {
+        display: flex;
+    }
+    header {
+        position: relative;
+    }
+    nav#mainNav,
+    .nav-toggle {
+        /* Make sure nav and toggle are above content */
+        z-index: 1000;
+    }
+    nav#mainNav {
+        /* Hide nav by default on mobile */
+        display: none;
+    }
+}
+
 /* General responsive adjustments */
 body, html {
     width: 100%;
