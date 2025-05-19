@@ -355,7 +355,7 @@ nav a.active::after {
 @media (max-width: 800px) {
     nav#mainNav {
         position: absolute;
-        top: 64px; /* adjust if your header is taller */
+        top: 64px;
         right: 0;
         background: #1f2937;
         width: 200px;
@@ -390,7 +390,6 @@ nav a.active::after {
     }
     nav#mainNav,
     .nav-toggle {
-        /* Make sure nav and toggle are above content */
         z-index: 1000;
     }
     nav#mainNav {

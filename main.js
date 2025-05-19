@@ -253,6 +253,21 @@ document.getElementById('translateBtn').addEventListener('click', () => {
     document.getElementById('translateBtn').textContent = currentLang === 'en' ? 'PT' : 'EN';
 });
 
-document.getElementById('navToggle').addEventListener('click', function() {
-    document.getElementById('mainNav').classList.toggle('open');
+const navToggle = document.getElementById('navToggle');
+const mainNav = document.getElementById('mainNav');
+
+
+navToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('open');
+});
+
+// Close menu after clicking a link (on mobile)
+navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+        navLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+        if (window.innerWidth <= 800) {
+            mainNav.classList.remove('open');
+        }
+    });
 });
